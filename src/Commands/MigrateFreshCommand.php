@@ -20,7 +20,7 @@ class MigrateFreshCommand extends Command
 
     public function getYesResponse(): string
     {
-        return collect($this->confirm)->random();   
+        return collect($this->confirm)->random();
     }
 
     public function ensureExecutingMigration(): bool
