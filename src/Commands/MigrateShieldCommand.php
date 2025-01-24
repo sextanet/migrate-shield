@@ -17,14 +17,14 @@ class MigrateShieldCommand extends Command
         return $this->backupCommand;
     }
 
-    public function getCommandArguments(bool $only_db = true, $disk): array
+    public function getCommandArguments(bool $only_db, $disk): array
     {
         $arguments = [];
 
         if ($only_db) {
             $arguments['--only-db'] = true;
         }
-        
+
         $arguments['--only-to-disk'] = $disk;
 
         return $arguments;
@@ -51,7 +51,7 @@ class MigrateShieldCommand extends Command
 
         $disk = config('migrate-shield.disk');
 
-        $this->info('Selected disk: ' . $disk);
+        $this->info('Selected disk: '.$disk);
 
         $this->call($this->getCommand(), $this->getCommandArguments(true, $disk));
 
