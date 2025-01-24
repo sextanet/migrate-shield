@@ -1,19 +1,11 @@
-# This is my package migrate-shield
+# Migrate Shield
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/sextanet/migrate-shield.svg?style=flat-square)](https://packagist.org/packages/sextanet/migrate-shield)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/sextanet/migrate-shield/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/sextanet/migrate-shield/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/sextanet/migrate-shield/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/sextanet/migrate-shield/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/sextanet/migrate-shield.svg?style=flat-square)](https://packagist.org/packages/sextanet/migrate-shield)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/migrate-shield.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/migrate-shield)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Protects your production environment by backing up your current database automatically
 
 ## Installation
 
@@ -23,38 +15,22 @@ You can install the package via composer:
 composer require sextanet/migrate-shield
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="migrate-shield-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="migrate-shield-config"
 ```
 
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="migrate-shield-views"
-```
-
 ## Usage
 
-```php
-$migrateShield = new SextaNet\MigrateShield();
-echo $migrateShield->echoPhrase('Hello, SextaNet!');
+Simply, use your traditional commands in production mode
+
+```bash
+php artisan migrate:fresh
+php artisan migrate:fresh --db-seed
 ```
+
+And you will get intercepted with Shield
 
 ## Testing
 
