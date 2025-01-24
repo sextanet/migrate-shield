@@ -18,16 +18,24 @@ class MigrateFreshCommand extends Command
         'Yes, I am conscious',
     ];
 
-    public function handle(): int
+    public function getYesResponse(): string
     {
-        $yes = collect($this->confirm)->random();
+        return collect($this->confirm)->random();   
+    }
 
+    public function ensureExecutingMigration(): bool
+    {
         $option = $this->menu("Migrate Shield enabled 🛡\nYou are in PRODUCTION\n\nDo you want to continue?", [
             'No',
-            $yes,
-        ])->open();
+            $this->getYesResponse(),
+        ])->disableDefaultItems()->open();
 
-        if ($option === 1) {
+        return $option === 1;
+    }
+
+    public function handle(): int
+    {
+        if ($this->ensureExecutingMigration()) {
             $this->call('migrate:shield');
 
             $this->call(\Illuminate\Database\Console\Migrations\FreshCommand::class, [
