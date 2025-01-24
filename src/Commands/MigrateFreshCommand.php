@@ -24,7 +24,7 @@ class MigrateFreshCommand extends Command
 
         $option = $this->menu("Migrate Shield enabled 🛡\nYou are in PRODUCTION\n\nDo you want to continue?", [
             'No',
-            $yes
+            $yes,
         ])->open();
 
         if ($option === 1) {

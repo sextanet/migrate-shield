@@ -3,9 +3,9 @@
 namespace SextaNet\MigrateShield;
 
 use SextaNet\MigrateShield\Commands\MigrateFreshCommand;
+use SextaNet\MigrateShield\Commands\MigrateShieldCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use SextaNet\MigrateShield\Commands\MigrateShieldCommand;
 
 class MigrateShieldServiceProvider extends PackageServiceProvider
 {
