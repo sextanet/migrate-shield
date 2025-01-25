@@ -35,10 +35,10 @@ describe('it knows the runs count', function () {
 
     test('deletes count file', function () {
         update_count(10);
-        
+
         expect(file_exists(get_count_file()))
             ->toBeTrue();
-            
+
         delete_count_file();
 
         expect(read_count())
