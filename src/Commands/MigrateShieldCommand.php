@@ -8,28 +8,40 @@ class MigrateShieldCommand extends Command
 
     public $description = 'Protects your migrations from being run in production';
 
-    protected $backupCommand = 'backup:run';
+    protected $backup_command = 'backup:run';
+
+    protected bool $only_db = true;
+    
+    protected bool $disable_notifications = true;
 
     public string $disk;
+    
+    public $password;
 
     public function __construct()
     {
         parent::__construct();
 
         $this->setDisk();
+        
+        $this->setPassword();
     }
 
     public function getCommand()
     {
-        return $this->backupCommand;
+        return $this->backup_command;
     }
 
-    public function getCommandArguments(bool $only_db): array
+    public function getCommandArguments(): array
     {
         $arguments = [];
 
-        if ($only_db) {
+        if ($this->only_db) {
             $arguments['--only-db'] = true;
+        }
+
+        if ($this->disable_notifications) {
+            $arguments['--disable-notifications'] = true;
         }
 
         $arguments['--only-to-disk'] = $this->disk;
@@ -39,7 +51,7 @@ class MigrateShieldCommand extends Command
 
     public function handle(): int
     {
-        $this->enabled();
+        $this->migrateShieldEnabled();
 
         // if (command_exists('mysqldump')) {
         //     $this->commandError('The command "mysqldump" is required to backup your database. Please install or enable it and try again.');
@@ -49,7 +61,7 @@ class MigrateShieldCommand extends Command
 
         // $this->commandInfo('Running backup before running migrations');
 
-        $this->call($this->getCommand(), $this->getCommandArguments(true));
+        $this->call($this->getCommand(), $this->getCommandArguments());
 
         return self::SUCCESS;
     }
@@ -59,5 +71,12 @@ class MigrateShieldCommand extends Command
         $this->disk = config('migrate-shield.disk');
 
         config()->set('backup.backup.destination.disks', [$this->disk]);
+    }
+
+    public function setPassword(): void
+    {
+        $this->password = config('migrate-shield.password');
+
+        config()->set('backup.backup.password', $this->password);
     }
 }
