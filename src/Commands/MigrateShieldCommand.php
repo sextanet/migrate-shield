@@ -31,7 +31,7 @@ class MigrateShieldCommand extends Command
     public function handle(): int
     {
         $this->enabled();
-        
+
         if (command_exists('mysqldump')) {
             $this->commandError('The command "mysqldump" is required to backup your database. Please install or enable it and try again.');
 

@@ -9,7 +9,7 @@ class ShieldCheckCommand extends Command
     public $description = 'Checks configuration for Migrate Shield';
 
     protected $backupCommand = 'shield:check';
-    
+
     protected $checks = [
         'disk_exists' => false,
     ];
@@ -25,7 +25,7 @@ class ShieldCheckCommand extends Command
         $this->commandInfo('Disk '.$disk);
 
         $this->newLine();
-        
+
         $this->checkDiskExists($disk);
 
         if ($this->checkValidConfiguration()) {
@@ -50,7 +50,7 @@ class ShieldCheckCommand extends Command
     {
         if (! in_array($disk, array_keys(config('filesystems.disks')))) {
             $this->error('🔴 Disk "'.$disk.'" not found in filesystems configuration');
-            
+
             return false;
         }
 
