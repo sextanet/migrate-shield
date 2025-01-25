@@ -20,8 +20,7 @@ composer require sextanet/migrate-shield
 Simply, use your traditional commands in production mode
 
 ```bash
-php artisan migrate:fresh
-php artisan migrate:fresh --db-seed
+php artisan migrate:fresh # --seed
 ```
 
 You will get covered and intercepted with Shield
