@@ -5,6 +5,7 @@ namespace SextaNet\MigrateShield;
 use SextaNet\MigrateShield\Commands\MigrateFreshCommand;
 use SextaNet\MigrateShield\Commands\MigrateShieldCommand;
 use SextaNet\MigrateShield\Commands\ShieldCheckCommand;
+use SextaNet\MigrateShield\Commands\ShieldCountCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,8 +21,9 @@ class MigrateShieldServiceProvider extends PackageServiceProvider
         $package
             ->name('migrate-shield')
             ->hasConfigFile()
-            ->hasCommand(MigrateShieldCommand::class)
+            ->hasCommand(ShieldCheckCommand::class)
+            ->hasCommand(ShieldCountCommand::class)
             ->hasCommand(MigrateFreshCommand::class)
-            ->hasCommand(ShieldCheckCommand::class);
+            ->hasCommand(MigrateShieldCommand::class);
     }
 }

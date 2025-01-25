@@ -16,6 +16,15 @@ class MigrateFreshCommand extends Command
         'Yes, I am conscious',
     ];
 
+    public array $messages = [
+        5 => "We've protected you",
+        10 => "Nice! We've protected you",
+        20 => "Great! We've protected you",
+        40 => "Cooool! Shield protected you",
+        80 => "Awesome! Shield is doing a great job",
+        100 => "Shield Master!",
+    ];
+
     public function getYesResponse(): string
     {
         return collect($this->confirm)->random();
