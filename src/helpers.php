@@ -49,3 +49,8 @@ function singular_or_plural(int $count, string $singular, string $plural): strin
 
     return $result;
 }
+
+function get_count_times(): string
+{
+    return singular_or_plural(read_count(), 'time', 'times');
+}

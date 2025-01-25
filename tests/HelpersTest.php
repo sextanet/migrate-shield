@@ -73,3 +73,16 @@ it('knows singular or plural word', function () {
     expect(singular_or_plural(2, 'item', 'items'))
         ->toBe('2 items');
 });
+
+it('knows count "time" or "times"', function () {
+    delete_count_file();
+    increment_count();
+
+    expect(get_count_times())
+        ->toBe('1 time');
+
+    increment_count();
+
+    expect(get_count_times())
+        ->toBe('2 times');
+});

@@ -32,7 +32,15 @@ class MigrateFreshCommand extends Command
 
     public function getTitle(): string
     {
-        return "Migrate Shield enabled 🛡\nYou are in PRODUCTION\n\nDo you want to continue?";
+        return <<<'SHIELD'
+        Migrate Shield enabled 🛡
+        
+        You are in PRODUCTION
+
+
+        
+        Do you want to continue?
+        SHIELD;
     }
 
     public function getOptions(): array
@@ -43,18 +51,13 @@ class MigrateFreshCommand extends Command
         ];
     }
 
-    public function times(): string
-    {
-        return singular_or_plural(read_count(), 'time', 'times');
-    }
-
     public function showTimes()
     {
         if (read_count() === 0) {
             return '';
         }
 
-        return 'Cool! Shield have protected you '.$this->times();
+        return 'Cool! Shield have protected you '.get_count_times();
     }
 
     public function ensureExecutingMigration(): bool

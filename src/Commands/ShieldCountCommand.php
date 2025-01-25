@@ -10,7 +10,7 @@ class ShieldCountCommand extends Command
 
     public function handle(): int
     {
-        $this->commandInfo("We've protected you ".singular_or_plural(read_count(), 'time', 'times'));
+        $this->commandInfo("We've protected you ".get_count_times());
 
         if (read_count() > 5) {
             $this->call('shield:share');
