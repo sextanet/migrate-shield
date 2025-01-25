@@ -20,9 +20,9 @@ class MigrateFreshCommand extends Command
         5 => "We've protected you",
         10 => "Nice! We've protected you",
         20 => "Great! We've protected you",
-        40 => "Cooool! Shield protected you",
-        80 => "Awesome! Shield is doing a great job",
-        100 => "Shield Master!",
+        40 => 'Cooool! Shield protected you',
+        80 => 'Awesome! Shield is doing a great job',
+        100 => 'Shield Master!',
     ];
 
     public function getYesResponse(): string
