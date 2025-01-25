@@ -16,17 +16,60 @@ class MigrateFreshCommand extends Command
         'Yes, I am conscious',
     ];
 
+    public array $messages = [
+        5 => "We've protected you",
+        10 => "Nice! We've protected you",
+        20 => "Great! We've protected you",
+        40 => 'Cooool! Shield protected you',
+        80 => 'Awesome! Shield is doing a great job',
+        100 => 'Shield Master!',
+    ];
+
     public function getYesResponse(): string
     {
         return collect($this->confirm)->random();
     }
 
-    public function ensureExecutingMigration(): bool
+    public function getTitle(): string
     {
-        $option = $this->menu("Migrate Shield enabled 🛡\nYou are in PRODUCTION\n\nDo you want to continue?", [
+        return <<<'SHIELD'
+        Migrate Shield enabled 🛡
+        
+        You are in PRODUCTION
+
+
+        
+        Do you want to continue?
+        SHIELD;
+    }
+
+    public function getOptions(): array
+    {
+        return [
             'No',
             $this->getYesResponse(),
-        ])->disableDefaultItems()->open();
+        ];
+    }
+
+    public function showTimes()
+    {
+        if (read_count() === 0) {
+            return '';
+        }
+
+        return 'Cool! Shield have protected you '.get_count_times();
+    }
+
+    public function ensureExecutingMigration(): bool
+    {
+        $option = $this->menu($this->getTitle(), $this->getOptions())
+            ->setBackgroundColour('57')
+            ->setForegroundColour('white')
+            ->disableDefaultItems()
+            ->addLineBreak('')
+            ->addLineBreak('-')
+            ->addStaticItem($this->showTimes())
+            ->open();
 
         return $option === 1;
     }

@@ -11,4 +11,6 @@ return [
     'disk' => env('MIGRATE_SHIELD_DISK', 'local'),
 
     'password' => env('MIGRATE_SHIELD_PASSWORD', null),
+
+    'share_url' => env('MIGRATE_SHIELD_SHARE_URL'),
 ];

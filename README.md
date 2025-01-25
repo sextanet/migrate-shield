@@ -5,7 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/sextanet/migrate-shield/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/sextanet/migrate-shield/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/sextanet/migrate-shield.svg?style=flat-square)](https://packagist.org/packages/sextanet/migrate-shield)
 
-Protects your production environment by backing up your current database automatically with Spatie's Laravel Backup.
+Protects your production environment by backing up your database
+
+It uses [Spatie's Laravel Backup](https://spatie.be/docs/laravel-backup/) behind the scenes.
 
 ## Installation
 
