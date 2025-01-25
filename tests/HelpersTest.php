@@ -8,6 +8,16 @@ it('knows the command exists', function () {
         ->toBeFalse();
 });
 
+it('knows shield path', function () {
+    expect(shield_base_path())
+        ->toContain('migrate-shield');
+});
+
+it('knows shield path with custom file', function () {
+    expect(shield_base_path('src/.count'))
+        ->toContain('migrate-shield/src/.count');
+});
+
 describe('it knows the runs count', function () {
     afterEach(function () {
         delete_count_file();

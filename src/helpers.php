@@ -5,6 +5,11 @@ function command_exists($command): bool
     return ! empty(shell_exec(sprintf('which %s', escapeshellarg($command))));
 }
 
+function shield_base_path(?string $file = ''): string
+{
+    return app('shield-base-path').($file ? '/'.$file : '');
+}
+
 function delete_count_file(): void
 {
     $file = get_count_file();
@@ -16,7 +21,7 @@ function delete_count_file(): void
 
 function get_count_file($file = '.count'): string
 {
-    return __DIR__.'/../'.$file;
+    return shield_base_path($file);
 }
 
 function update_count(int $count): void

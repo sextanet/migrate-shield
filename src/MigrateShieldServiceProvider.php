@@ -27,5 +27,9 @@ class MigrateShieldServiceProvider extends PackageServiceProvider
             ->hasCommand(ShieldShareCommand::class)
             ->hasCommand(MigrateFreshCommand::class)
             ->hasCommand(MigrateShieldCommand::class);
+
+        $this->app->bind('shield-base-path', function () {
+            return realpath(__DIR__.'/../');
+        });
     }
 }
