@@ -27,14 +27,14 @@ You will get covered and intercepted with Shield
 
 ## Configuration
 
-By default, it works inmediately with zero config. But also, you can customize some things
+By default, it works inmediately with zero config. But also, you can customize some things in your `.env` file
 
 ```dotenv
 MIGRATE_SHIELD_DISK=local
 MIGRATE_SHIELD_PASSWORD="YOURPASSWORD"
 ```
 
-You can publish the config file with:
+Optionally, you can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="migrate-shield-config"
@@ -42,7 +42,7 @@ php artisan vendor:publish --tag="migrate-shield-config"
 
 ## Troubleshooting
 
-If have your `mysqldump` or `pg_dump` in another location, you need to add dump
+If have your `mysqldump` or `pg_dump` in another location, you need to add `dump binary path`
 
 Source: https://spatie.be/docs/laravel-backup/v8/installation-and-setup
 
@@ -50,10 +50,10 @@ Source: https://spatie.be/docs/laravel-backup/v8/installation-and-setup
 //config/database.php
 
 'connections' => [
-	'mysql' => [
-		'driver' => 'mysql'
-		...,
-		'dump' => [
+    'mysql' => [
+        'driver' => 'mysql'
+        // (...),
+        'dump' => [
             'dump_binary_path' => env('MYSQL_DUMP_BINARY_PATH', null), // only the path, so without `mysqldump` or `pg_dump`
             'timeout' => env('MYSQL_DUMP_TIMEOUT', 60 * 5), // 5 minutes timuout
         ],
