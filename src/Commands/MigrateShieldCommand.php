@@ -11,11 +11,11 @@ class MigrateShieldCommand extends Command
     protected $backup_command = 'backup:run';
 
     protected bool $only_db = true;
-    
+
     protected bool $disable_notifications = true;
 
     public string $disk;
-    
+
     public $password;
 
     public function __construct()
@@ -23,7 +23,7 @@ class MigrateShieldCommand extends Command
         parent::__construct();
 
         $this->setDisk();
-        
+
         $this->setPassword();
     }
 

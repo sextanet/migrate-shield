@@ -20,8 +20,6 @@ class MigrateShieldServiceProvider extends PackageServiceProvider
         $package
             ->name('migrate-shield')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_migrate_shield_table')
             ->hasCommand(MigrateShieldCommand::class)
             ->hasCommand(MigrateFreshCommand::class)
             ->hasCommand(ShieldCheckCommand::class);

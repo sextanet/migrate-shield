@@ -15,12 +15,6 @@ You can install the package via composer:
 composer require sextanet/migrate-shield
 ```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="migrate-shield-config"
-```
-
 ## Usage
 
 Simply, use your traditional commands in production mode
@@ -30,7 +24,22 @@ php artisan migrate:fresh
 php artisan migrate:fresh --db-seed
 ```
 
-And you will get intercepted with Shield
+You will get covered and intercepted with Shield
+
+## Configuration
+
+By default, it works inmediately with zero config. But also, you can customize some things
+
+```dotenv
+MIGRATE_SHIELD_DISK=local
+MIGRATE_SHIELD_PASSWORD="YOURPASSWORD"
+```
+
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --tag="migrate-shield-config"
+```
 
 ## Troubleshooting
 
