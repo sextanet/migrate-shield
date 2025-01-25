@@ -41,3 +41,11 @@ function increment_count(int $by = 1): void
 
     update_count($count + $by);
 }
+
+function singular_or_plural(int $count, string $singular, string $plural): string
+{
+    $result = "{$count} ";
+    $result .= $count === 1 ? $singular : $plural;
+
+    return $result;
+}

@@ -36,7 +36,16 @@ class MigrateFreshCommand extends Command
 
     public function times(): string
     {
-        return read_count().' times';
+        return singular_or_plural(read_count(), 'time', 'times');
+    }
+
+    public function showTimes()
+    {
+        if (read_count() === 0) {
+            return '';
+        }
+
+        return 'Cool! Shield have protected you '.$this->times();
     }
 
     public function ensureExecutingMigration(): bool
@@ -47,7 +56,7 @@ class MigrateFreshCommand extends Command
             ->disableDefaultItems()
             ->addLineBreak('')
             ->addLineBreak('-')
-            ->addStaticItem('Cool! Shield have protected you '.$this->times())
+            ->addStaticItem($this->showTimes())
             ->open();
 
         return $option === 1;

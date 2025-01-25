@@ -65,3 +65,11 @@ describe('it knows the runs count', function () {
             ->toBeTrue();
     });
 });
+
+it('knows singular or plural word', function () {
+    expect(singular_or_plural(1, 'item', 'items'))
+        ->toBe('1 item');
+
+    expect(singular_or_plural(2, 'item', 'items'))
+        ->toBe('2 items');
+});
