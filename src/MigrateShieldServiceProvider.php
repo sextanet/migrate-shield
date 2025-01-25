@@ -5,6 +5,8 @@ namespace SextaNet\MigrateShield;
 use SextaNet\MigrateShield\Commands\MigrateFreshCommand;
 use SextaNet\MigrateShield\Commands\MigrateShieldCommand;
 use SextaNet\MigrateShield\Commands\ShieldCheckCommand;
+use SextaNet\MigrateShield\Commands\ShieldCountCommand;
+use SextaNet\MigrateShield\Commands\ShieldShareCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,10 +22,14 @@ class MigrateShieldServiceProvider extends PackageServiceProvider
         $package
             ->name('migrate-shield')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_migrate_shield_table')
-            ->hasCommand(MigrateShieldCommand::class)
+            ->hasCommand(ShieldCheckCommand::class)
+            ->hasCommand(ShieldCountCommand::class)
+            ->hasCommand(ShieldShareCommand::class)
             ->hasCommand(MigrateFreshCommand::class)
-            ->hasCommand(ShieldCheckCommand::class);
+            ->hasCommand(MigrateShieldCommand::class);
+
+        $this->app->bind('shield-base-path', function () {
+            return realpath(__DIR__.'/../');
+        });
     }
 }
