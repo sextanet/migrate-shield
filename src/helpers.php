@@ -34,3 +34,10 @@ function read_count(): int
 
     return (int) file_get_contents($file);
 }
+
+function increment_count(int $by = 1): void
+{
+    $count = read_count();
+
+    update_count($count + $by);
+}
