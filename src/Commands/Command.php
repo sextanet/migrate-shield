@@ -18,6 +18,6 @@ abstract class Command extends BaseCommand
 
     public function enabled(): void
     {
-        $this->components->warn('Migrate Shield Enabled 🛡');
+        $this->components->info('Migrate Shield Enabled 🛡');
     }
 }

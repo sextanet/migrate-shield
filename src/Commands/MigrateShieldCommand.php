@@ -10,12 +10,21 @@ class MigrateShieldCommand extends Command
 
     protected $backupCommand = 'backup:run';
 
+    public string $disk;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->setDisk();
+    }
+
     public function getCommand()
     {
         return $this->backupCommand;
     }
 
-    public function getCommandArguments(bool $only_db, $disk): array
+    public function getCommandArguments(bool $only_db): array
     {
         $arguments = [];
 
@@ -23,7 +32,7 @@ class MigrateShieldCommand extends Command
             $arguments['--only-db'] = true;
         }
 
-        $arguments['--only-to-disk'] = $disk;
+        $arguments['--only-to-disk'] = $this->disk;
 
         return $arguments;
     }
@@ -32,20 +41,23 @@ class MigrateShieldCommand extends Command
     {
         $this->enabled();
 
-        if (command_exists('mysqldump')) {
-            $this->commandError('The command "mysqldump" is required to backup your database. Please install or enable it and try again.');
+        // if (command_exists('mysqldump')) {
+        //     $this->commandError('The command "mysqldump" is required to backup your database. Please install or enable it and try again.');
 
-            return self::FAILURE;
-        }
+        //     return self::FAILURE;
+        // }
 
-        $this->commandInfo('Running backup before running migrations');
+        // $this->commandInfo('Running backup before running migrations');
 
-        $disk = config('migrate-shield.disk');
-
-        $this->commandInfo('Selected disk: '.$disk);
-
-        $this->call($this->getCommand(), $this->getCommandArguments(true, $disk));
+        $this->call($this->getCommand(), $this->getCommandArguments(true));
 
         return self::SUCCESS;
+    }
+
+    public function setDisk(): void
+    {
+        $this->disk = config('migrate-shield.disk');
+
+        config()->set('backup.backup.destination.disks', [$this->disk]);
     }
 }
