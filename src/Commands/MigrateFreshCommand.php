@@ -21,12 +21,34 @@ class MigrateFreshCommand extends Command
         return collect($this->confirm)->random();
     }
 
-    public function ensureExecutingMigration(): bool
+    public function getTitle(): string
     {
-        $option = $this->menu("Migrate Shield enabled 🛡\nYou are in PRODUCTION\n\nDo you want to continue?", [
+        return "Migrate Shield enabled 🛡\nYou are in PRODUCTION\n\nDo you want to continue?";
+    }
+
+    public function getOptions(): array
+    {
+        return [
             'No',
             $this->getYesResponse(),
-        ])->disableDefaultItems()->open();
+        ];
+    }
+
+    public function times(): string
+    {
+        return read_count().' times';
+    }
+
+    public function ensureExecutingMigration(): bool
+    {
+        $option = $this->menu($this->getTitle(), $this->getOptions())
+            ->setBackgroundColour('57')
+            ->setForegroundColour('white')
+            ->disableDefaultItems()
+            ->addLineBreak('')
+            ->addLineBreak('-')
+            ->addStaticItem('Cool! Shield have protected you '.$this->times())
+            ->open();
 
         return $option === 1;
     }

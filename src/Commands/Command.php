@@ -18,6 +18,8 @@ abstract class Command extends BaseCommand
 
     public function migrateShieldEnabled(): void
     {
+        increment_count();
+        
         $this->components->info('Migrate Shield Enabled 🛡');
     }
 }
