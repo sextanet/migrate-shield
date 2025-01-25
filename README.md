@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/sextanet/migrate-shield/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/sextanet/migrate-shield/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/sextanet/migrate-shield.svg?style=flat-square)](https://packagist.org/packages/sextanet/migrate-shield)
 
-Protects your production environment by backing up your current database automatically
+Protects your production environment by backing up your current database automatically with Spatie's Laravel Backup.
 
 ## Installation
 
@@ -31,6 +31,27 @@ php artisan migrate:fresh --db-seed
 ```
 
 And you will get intercepted with Shield
+
+## Troubleshooting
+
+If have your `mysqldump` or `pg_dump` in another location, you need to add dump
+
+Source: https://spatie.be/docs/laravel-backup/v8/installation-and-setup
+
+```php
+//config/database.php
+
+'connections' => [
+	'mysql' => [
+		'driver' => 'mysql'
+		...,
+		'dump' => [
+            'dump_binary_path' => env('MYSQL_DUMP_BINARY_PATH', null), // only the path, so without `mysqldump` or `pg_dump`
+            'timeout' => env('MYSQL_DUMP_TIMEOUT', 60 * 5), // 5 minutes timuout
+        ],
+    ]
+],
+```
 
 ## Testing
 

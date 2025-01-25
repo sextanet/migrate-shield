@@ -2,8 +2,6 @@
 
 namespace SextaNet\MigrateShield\Commands;
 
-use Illuminate\Console\Command;
-
 class MigrateFreshCommand extends Command
 {
     public $signature = 'migrate:fresh {--seed : Run seeders after migrating}';

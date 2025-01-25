@@ -2,8 +2,6 @@
 
 namespace SextaNet\MigrateShield\Commands;
 
-use Illuminate\Console\Command;
-
 class MigrateShieldCommand extends Command
 {
     public $signature = 'migrate:shield';
@@ -32,26 +30,19 @@ class MigrateShieldCommand extends Command
 
     public function handle(): int
     {
-        $this->newLine();
-        $this->warn('------------------------------');
-        $this->newLine();
-        $this->warn('  You are in production mode  ');
-        $this->warn('   Migrate Shield enabled 🛡  ');
-        $this->newLine();
-        $this->warn('------------------------------');
-
+        $this->enabled();
+        
         if (command_exists('mysqldump')) {
-            $this->newLine(2);
-            $this->error('The command "mysqldump" is required to backup your database. Please install it and try again.');
+            $this->commandError('The command "mysqldump" is required to backup your database. Please install or enable it and try again.');
 
             return self::FAILURE;
         }
 
-        $this->info('Running backup before running migrations...');
+        $this->commandInfo('Running backup before running migrations');
 
         $disk = config('migrate-shield.disk');
 
-        $this->info('Selected disk: '.$disk);
+        $this->commandInfo('Selected disk: '.$disk);
 
         $this->call($this->getCommand(), $this->getCommandArguments(true, $disk));
 

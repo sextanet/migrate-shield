@@ -2,8 +2,6 @@
 
 namespace SextaNet\MigrateShield\Commands;
 
-use Illuminate\Console\Command;
-
 class ShieldCheckCommand extends Command
 {
     public $signature = 'shield:check';
@@ -18,13 +16,13 @@ class ShieldCheckCommand extends Command
 
     public function handle(): int
     {
-        $this->info('Checking shield configuration...');
+        $this->commandInfo('Checking configuration');
 
         $disk = config('migrate-shield.disk');
 
         $this->newLine();
 
-        $this->info('Disk: '.$disk);
+        $this->commandInfo('Disk '.$disk);
 
         $this->newLine();
         
@@ -32,7 +30,7 @@ class ShieldCheckCommand extends Command
 
         if ($this->checkValidConfiguration()) {
             $this->newLine();
-            $this->info('✅ Configuration is valid');
+            $this->commandInfo('Configuration is valid');
 
             return self::SUCCESS;
         }
@@ -58,7 +56,7 @@ class ShieldCheckCommand extends Command
 
         $this->checks['disk_exists'] = true;
 
-        $this->info('✅ Disk "'.$disk.'" found in filesystems configuration');
+        $this->commandInfo('Disk "'.$disk.'" found in filesystems configuration');
 
         return true;
     }
